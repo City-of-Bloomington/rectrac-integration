@@ -1,0 +1,13 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/City-of-Bloomington/blossom-lib.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "aura/autoload": "~2",
+        "City-of-Bloomington/blossom-lib": "dev-master"
+    }
+}
