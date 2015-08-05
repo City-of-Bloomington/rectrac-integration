@@ -11,3 +11,4 @@ site_config.inc
 /data/blocks/
 /scripts/backup.cnf
 composer.lock
+/public/css/.sass-cache
