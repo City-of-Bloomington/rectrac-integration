@@ -21,9 +21,7 @@ define('ADMINISTRATOR_EMAIL','admin@servername.com');
  * Refer to the PDO documentation for DSN sytnax for your database type
  * http://www.php.net/manual/en/pdo.drivers.php
  */
-define('DB_ADAPTER','Pdo_Mysql');
-define('DB_HOST','localhost');
-define('DB_NAME','application');
+define('DB_DSN','odbc:rectrac');
 define('DB_USER','application');
 define('DB_PASS','password');
 
