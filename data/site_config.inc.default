@@ -25,5 +25,6 @@ define('DB_DSN','odbc:rectrac');
 define('DB_USER','application');
 define('DB_PASS','password');
 
-define('DATE_FORMAT', 'n/j/Y H:i:s');
+define('DATE_FORMAT', 'n/j/Y');
+define('TIME_FORMAT', 'g:ia');
 define('LOCALE', 'en_US');

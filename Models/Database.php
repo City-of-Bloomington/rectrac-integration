@@ -23,7 +23,7 @@ class Database
 		}
 		if (!self::$connection) {
 			try {
-                self::$connection = new PDO(DB_DSN, DB_USER, DB_PASS);
+                self::$connection = new \PDO(DB_DSN, DB_USER, DB_PASS);
 			}
 			catch (Exception $e) {
 				die($e->getMessage());
