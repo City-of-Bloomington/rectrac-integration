@@ -20,7 +20,9 @@ class ActivityGateway
         'endDate'       => 'ARS-EndDAte',
         'startTime'     => 'ARS-BegTime',
         'endTime'       => 'ARS-EndTime',
-        'days'          => 'ARS-MeetDay'
+        'days'          => 'ARS-MeetDay',
+        'type'          => 'ARC-Type',
+        'category'      => 'ARC-Category'
     ];
     public static function find()
     {
@@ -42,7 +44,9 @@ class ActivityGateway
                     ARSECTION.\"ARS-EndTime\",
                     ARSECTION.\"ARS-MeetDay\",
                     ARSECTION.\"ARS-BegAge\",
-                    ARSECTION.\"ARS-EndAge\"
+                    ARSECTION.\"ARS-EndAge\",
+                    ARCLASS.\"ARC-Type\",
+                    ARCLASS.\"ARC-Category\"
                 from PUB.ARSECTION
                 join PUB.ARCLASS on ARSECTION.\"ARS-ActvNumb\"=ARCLASS.\"ARC-ActvNumb\"
                 join PUB.FRFACIL on ARSECTION.\"ARS-FacID\"=FRFACIL.\"FRF-Facil\"
@@ -57,6 +61,8 @@ class ActivityGateway
                 $data[$activityNum] = [
                     'title'       => $row[self::$fields['title']],
                     'description' => $row[self::$fields['description']],
+                    'type'        => $row[self::$fields['type']],
+                    'category'    => $row[self::$fields['category']],
                     'sections' => []
                 ];
             }

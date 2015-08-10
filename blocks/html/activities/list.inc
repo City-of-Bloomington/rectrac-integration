@@ -9,7 +9,7 @@ echo "Found ".count($this->activities)." activities\n";
 foreach ($this->activities as $activityNum => $a) {
     echo "
     <div>
-        <h2>$activityNum - $a[title]</h2>
+        <h2>$activityNum - $a[title] ($a[category]/$a[type])</h2>
         <p>$a[description]</p>
         </p>
         <table>
