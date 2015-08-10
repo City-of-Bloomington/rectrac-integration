@@ -15,6 +15,6 @@ class IndexController extends Controller
 	public function index()
 	{
         $list = ActivityGateway::find();
-        $this->template->blocks[] = new Block('activities/list.inc', ['activities'=>$list]);
+        $this->template->blocks[] = new Block('help.inc');
 	}
 }
