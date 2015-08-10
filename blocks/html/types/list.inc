@@ -8,9 +8,10 @@
 echo '<table>';
 
 foreach ($this->types as $row) {
+    $url = BASE_URI.'/activities?type='.$row['ARB-Type'];
     echo "
     <tr><th>{$row['ARB-Type']}</th>
-        <td>{$row['ARB-Descript']}</td>
+        <td><a href=\"$url\">{$row['ARB-Descript']}</a></td>
         <td>{$row['ARB-CodeType']}</td>
     </tr>
     ";

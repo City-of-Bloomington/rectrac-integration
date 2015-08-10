@@ -24,13 +24,11 @@ class ActivityGateway
         'type'          => 'ARC-Type',
         'category'      => 'ARC-Category'
     ];
-    public static function find()
-    {
-        $data = [];
 
+    public static function find(array $fields=null)
+    {
         $pdo = Database::getConnection();
-        $sql = "select
-                    ARSECTION.\"ARS-ActvNumb\",
+        $columns = "ARSECTION.\"ARS-ActvNumb\",
                     ARSECTION.\"ARS-Section\",
                     ARCLASS.\"ARC-Descript\",
                     ARSECTION.\"ARS-Sex\",
@@ -46,14 +44,32 @@ class ActivityGateway
                     ARSECTION.\"ARS-BegAge\",
                     ARSECTION.\"ARS-EndAge\",
                     ARCLASS.\"ARC-Type\",
-                    ARCLASS.\"ARC-Category\"
-                from PUB.ARSECTION
+                    ARCLASS.\"ARC-Category\"";
+        $from = "from PUB.ARSECTION
                 join PUB.ARCLASS on ARSECTION.\"ARS-ActvNumb\"=ARCLASS.\"ARC-ActvNumb\"
                 join PUB.FRFACIL on ARSECTION.\"ARS-FacID\"=FRFACIL.\"FRF-Facil\"
-                                and ARSECTION.\"ARS-FacLoc\"=FRFACIL.\"FRF-Loc\"
-                where ARSECTION.\"ARS-WebShow\"='yes'
-                order by ARCLASS.\"ARC-Descript\"";
+                                and ARSECTION.\"ARS-FacLoc\"=FRFACIL.\"FRF-Loc\"";
+        $where = "where ARSECTION.\"ARS-WebShow\"='yes'";
+        $order = "order by ARCLASS.\"ARC-Descript\"";
+
+        if ($fields) {
+            if (!empty($fields['type'])) {
+                $t = preg_replace('[^A-Z]', '', $fields['type']);
+                $where .= " and ARSECTION.\"ARS-Type\"='$t'";
+            }
+        }
+
+        $sql = "select $columns $from $where $order";
         $result = $pdo->query($sql);
+        if (!$result) {
+            print_r($pdo->errorInfo());
+        }
+        return self::loadResults($result);
+    }
+
+    private static function loadResults($result)
+    {
+        $data = [];
         foreach ($result as $row) {
             $activityNum   = $row[self::$fields['activityNum']];
             $sectionLetter = $row[self::$fields['sectionLetter']];

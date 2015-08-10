@@ -13,19 +13,28 @@ class TypeGateway
         $data = [];
 
         $pdo = Database::getConnection();
-        $sql = "select
-                    ARTYPE.\"ARB-Type\",
+        $columns = "ARTYPE.\"ARB-Type\",
                     ARTYPE.\"ARB-CodeType\",
-                    ARTYPE.\"ARB-Descript\"
-                from PUB.ARTYPE
-                where ARTYPE.\"ARB-WebShow\"='yes'";
+                    ARTYPE.\"ARB-Descript\"";
+        $from = "from PUB.ARTYPE";
+        $where = "where ARTYPE.\"ARB-WebShow\"='yes'";
 
         if ($fields) {
             if (!empty($fields['CodeType'])) {
                 $t = ($fields['CodeType'] === 'C') ? 'C' : 'T';
-                $sql.= " and ARTYPE.\"ARB-CodeType\"='$t'";
+                $where .= " and ARTYPE.\"ARB-CodeType\"='$t'";
+            }
+            elseif (!empty($fields['category'])) {
+                $c = preg_replace('[^A-Z]', '', $fields['category']);
+                if ($c) {
+                    $columns = "distinct $columns";
+                    $from    = "from PUB.ARSECTION join PUB.ARTYPE on ARSECTION.\"ARS-Type\"=ARTYPE.\"ARB-Type\"";
+                    $where   = "where ARSECTION.\"ARS-WebShow\"='yes' and ARSECTION.\"ARS-Category\"='$c'";
+                }
             }
         }
+
+        $sql = "select $columns $from $where";
         $result = $pdo->query($sql);
 
         if (!$result) {

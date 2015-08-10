@@ -14,8 +14,8 @@ class TypesController extends Controller
 {
 	public function index()
 	{
-        $list = TypeGateway::find(['CodeType'=>'T']);
-        
+        $list = TypeGateway::find($_GET);
+
         $this->template->blocks[] = new Block('types/list.inc', ['types'=>$list]);
 	}
 }

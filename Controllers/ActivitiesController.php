@@ -14,7 +14,7 @@ class ActivitiesController extends Controller
 {
 	public function index()
 	{
-        $list = ActivityGateway::find();
+        $list = ActivityGateway::find($_GET);
         $this->template->blocks[] = new Block('activities/list.inc', ['activities'=>$list]);
 	}
 }
