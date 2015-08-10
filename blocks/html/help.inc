@@ -1,8 +1,13 @@
+<h2>Format Support</h2>
+<p>In addition to this HTML interface, we also provide JSON format.</p>
+<table>
+    <tr><th>JSON</th>
+        <td>Content-Type: text/json; charset=utf-8</td>
+    </tr>
+</table>
+
 <h2>API Methods</h2>
-<p>All parameters are sent as regular URL parameters.
-   As much as possible, the names of things (fields, parameters, etc.) are
-   the names used inside of RecTrac.
-</p>
+<p>All parameters are sent as regular URL parameters.</p>
 
 
 <h3>GET Categories</h3>
@@ -20,7 +25,8 @@
 <h4>Response</h4>
 <table>
     <tr><th>Type</th>
-        <th>The short code for this type.  This is used as the foreign key in the activities.</tr>
+        <td>The short code for this type.  This is used as the foreign key in the activities.</td>
+    </tr>
     <tr><th>Descript</th>
         <td>The longer, human readable name for this type.</tr>
     <tr><th>CodeType</th>
@@ -49,7 +55,8 @@
 <h4>Response</h4>
 <table>
     <tr><th>Type</th>
-        <th>The short code for this type.  This is used as the foreign key in the activities.</tr>
+        <td>The short code for this type.  This is used as the foreign key in the activities.</td>
+    </tr>
     <tr><th>Descript</th>
         <td>The longer, human readable name for this type.</tr>
     <tr><th>CodeType</th>
