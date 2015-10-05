@@ -57,6 +57,10 @@ class ActivityGateway
                 $t = preg_replace('[^A-Z]', '', $fields['type']);
                 $where .= " and ARSECTION.\"ARS-Type\"='$t'";
             }
+            if (!empty($fields['id'])) {
+                $id = (int)$fields['id'];
+                $where = "where ARSECTION.\"ARS-ActvNumb\"=$id";
+            }
         }
 
         $sql = "select $columns $from $where $order";

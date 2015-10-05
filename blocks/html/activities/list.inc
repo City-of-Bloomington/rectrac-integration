@@ -7,11 +7,11 @@
  */
 echo "Found ".count($this->activities)." activities\n";
 foreach ($this->activities as $activityNum => $a) {
+    $url = BASE_URI.'/activities?id='.$activityNum;
     echo "
     <div>
-        <h2>$activityNum - $a[title] ($a[category]/$a[type])</h2>
+        <h2><a href=\"$url\">$activityNum - $a[title] ($a[category]/$a[type])</a></h2>
         <p>$a[description]</p>
-        </p>
         <table>
     ";
     foreach ($a['sections'] as $letter=>$s) {
